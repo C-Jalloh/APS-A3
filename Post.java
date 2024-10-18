@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Represents a post in a social network.
+ */
 public class Post {
 
     private String content;
@@ -10,56 +13,47 @@ public class Post {
     private ArrayList<Comment> comments;
     private int likes;
 
+    /**
+     * Constructs a new post with the specified content.
+     *
+     * @param content The content of the post.
+     */
     public Post(String content) {
         this.content = content;
         this.timestamp = Calendar.getInstance().getTime();
+        this.author = author;
+        this.comments = new ArrayList<>();
+        this.likes = 0;
     }
 
+    /**
+     * Adds a comment to the post.
+     *
+     * @param comment The comment to add.
+     */
     public void addComment(Comment comment) {
-        comments = new ArrayList<>();
         comments.add(comment);
     }
 
-
-    public void setAuthor(String adminName, String adminEmail) {
-        this.author = new UserProfile(adminName, adminEmail) {
-        };
-    }
-
-    public UserProfile getAuthor() {
-        return author;
-    }
-
-    public String getComments() {
-
-        return "";
-    }
-
+    /**
+     * Increases the like count for the post.
+     */
     public void likePost() {
-        this.likes += 1;
+        likes++;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "\n\tcontent='" + content + '\'' +
-                "\n\t, timestamp=" + timestamp +
-                "\n\t, author=" + author +
-                "\n\t, comments=" + comments +
-                "\n\t, likes=" + likes +
-                "\n}";
-    }
-
+    /**
+     * Displays the post details in a formatted way.
+     */
     public void displayPost() {
-        System.out.println(
-                "Post { " +
-                        "\n\tcontent = '" + content + '\'' +
-                        "\n\t timestamp = " + timestamp +
-                        "\n\t author = " + this.getAuthor().display() +
-                        "\n\t comments = " + getComments() +
-                        "\n\t likes = " + likes +
-                        "\n }");
     }
 
+    public void setAuthor(String name, String mail) {
+        this.author.setUsername(name);
+        this.author.setEmail(mail);
+
+    }
 }
+
+
 
