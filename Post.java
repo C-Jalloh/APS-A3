@@ -21,7 +21,6 @@ public class Post {
     public Post(String content) {
         this.content = content;
         this.timestamp = Calendar.getInstance().getTime();
-        this.author = author;
         this.comments = new ArrayList<>();
         this.likes = 0;
     }
@@ -48,9 +47,10 @@ public class Post {
     public void displayPost() {
     }
 
+    ;
     public void setAuthor(String name, String mail) {
-        this.author.setUsername(name);
-        this.author.setEmail(mail);
+        // this.author.setUsername(name);
+        //this.author.setEmail(mail);
 
     }
 }
