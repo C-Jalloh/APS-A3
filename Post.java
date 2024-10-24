@@ -7,11 +7,11 @@ import java.util.Date;
  */
 public class Post {
 
-    private String content;
-    private Date timestamp;
-    private UserProfile author;
-    private ArrayList<Comment> comments;
-    private int likes;
+    protected String content;
+    protected Date timestamp;
+    protected StandardUser author = new StandardUser();
+    protected ArrayList<Comment> comments;
+    protected int likes;
 
     /**
      * Constructs a new post with the specified content.
@@ -45,12 +45,18 @@ public class Post {
      * Displays the post details in a formatted way.
      */
     public void displayPost() {
+        System.out.println(
+                "\tContent : " + content +
+                        "\n\tAuthor : " + author.getUsername() +
+                        "\n\tLikes : " + likes +
+                        "\n\tTime : " + timestamp.toString()
+        );
     }
 
     ;
     public void setAuthor(String name, String mail) {
-        // this.author.setUsername(name);
-        //this.author.setEmail(mail);
+        this.author.setUsername(name);
+        this.author.setEmail(mail);
 
     }
 }

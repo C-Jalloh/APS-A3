@@ -3,10 +3,11 @@ import java.util.ArrayList;
 public abstract class UserProfile {
 
     protected Message message;  // Consider making this private for better encapsulation
-    private String username;
-    private String email;
-    private ArrayList<UserProfile> friends;
-    private FriendList friendList;
+    protected String username;
+    protected String email;
+    protected ArrayList<UserProfile> friends;
+    protected FriendList friendList;
+    protected ArrayList<Message> messageList;
 
     public UserProfile(String username, String email) {
         this.username = username;
@@ -15,6 +16,12 @@ public abstract class UserProfile {
         this.friendList = new FriendList();
     }
 
+    public UserProfile() {
+        this.friends = new ArrayList<>();
+        this.friendList = new FriendList();
+    }
+
+    ;
     public void addFriend(UserProfile friend) {
         if (!friends.contains(friend)) {
             friends.add(friend);
@@ -58,18 +65,27 @@ public abstract class UserProfile {
         }
     }
 
+    public void getFriendByUsername(String username) {
+        for (UserProfile friend : friends) {
+            if (friend.getUsername().equals(username)) {
+                System.out.println(friend.display());
+            }
+        }
+        ;
+    }
     public String display() {
         return "\n\t\tName : " + username + "\n\t\tEmail: " + email;
     }
 
     public void sendMessage(Message sentMessage) {
-        message = sentMessage;  // Consider adding logic to handle message sending (e.g., store or send to other users)
+        message = sentMessage;
+        messageList = new ArrayList<>();
+        messageList.add(sentMessage);
+
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setName(String name) {
-    }
 }

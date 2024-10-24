@@ -8,6 +8,16 @@ public class StandardUser extends UserProfile implements Postable {
         this.posts = new ArrayList<>();
     }
 
+    public StandardUser() {
+        this.posts = new ArrayList<>();
+    }
+
+    @Override
+    public String getUsername() {
+        return super.getUsername();
+    }
+
+
     /**
      * Creates a new post and adds it to the user's feed.
      *
@@ -16,6 +26,7 @@ public class StandardUser extends UserProfile implements Postable {
     @Override
     public void createPost(Post post) {
         posts.add(post);
+        post.setAuthor(super.getUsername(), super.getEmail());
     }
 
     /**
@@ -25,7 +36,7 @@ public class StandardUser extends UserProfile implements Postable {
     public void viewTimeline() {
         System.out.println("My Timeline:");
         for (Post post : posts) {
-            System.out.println(post);
+            post.displayPost();
         }
     }
 

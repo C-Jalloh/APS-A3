@@ -20,7 +20,7 @@ public class PostsPage extends JFrame {
         panel1.add(Box.createHorizontalStrut(10));
         panel1.add(Box.createHorizontalStrut(10));
         JButton createPost = new JButton("Create a post");
-        createPost.setSize(300, 50);
+        createPost.setSize(100, 30);
         createPost.setVerticalAlignment(SwingConstants.CENTER);
         createPost.setAlignmentY(Component.CENTER_ALIGNMENT);
         createPost.setBackground(Color.red);

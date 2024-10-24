@@ -1,16 +1,54 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public class Message {
     private String content;
-    private UserProfile sender;
+    private UserProfile sender = new StandardUser();
     private UserProfile reciever;
-    private Date timestamp;
+    private Date timestamp = Calendar.getInstance().getTime();
     private boolean isPrivate = false;
 
-    public Message(String content, UserProfile sender, UserProfile reciever) {
+    public Message(String content, PremiumUser sender, UserProfile reciever) {
         this.content = content;
         this.sender = sender;
         this.reciever = reciever;
+        this.isPrivate = true;
+    }
+
+    public Message(String content, StandardUser sender, UserProfile reciever) {
+        this.content = content;
+        this.sender = sender;
+        this.reciever = reciever;
+    }
+
+    public Message(String content, boolean isPrivate) {
+        this.content = content;
+        this.isPrivate = isPrivate;
+    }
+
+    public Message(String content) {
+        this.content = content;
+    }
+
+    public Message() {
+
+    }
+
+    public void display() {
+        String privatestring;
+        if (this.isPrivate) {
+            privatestring = "Private";
+        } else {
+            privatestring = "Not Private";
+        }
+        ;
+        String time = String.valueOf(this.timestamp);
+        String print = "\n\tContent : " + this.content +
+                "\n\tSender : " + this.sender.getUsername() +
+                "\n\tReceiver : " + this.reciever.getUsername() +
+                "\n\tPrivate : " + privatestring +
+                "\n\tTime : " + time;
+        System.out.println(print);
     }
 
     public String getContent() {
