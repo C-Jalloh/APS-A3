@@ -6,7 +6,7 @@ import java.util.Date;
  */
 public class Comment {
 
-    private String content;
+    protected String content;
     private Date timestamp;
     private UserProfile author;
     private int likes;
@@ -44,5 +44,9 @@ public class Comment {
                 "\n\t\t  author = " + author +
                 "\n\t\t  likes = " + likes +
                 "\n\t}";
+    }
+
+    public UserProfile getAuthor() {
+        return this.author;
     }
 }

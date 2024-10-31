@@ -31,6 +31,10 @@ public class Group {
         this.admin = new PremiumUser(adminName, adminEmail);
     }
 
+    public void SetAdmin(PremiumUser admin){
+        this.admin = admin;
+    }
+
     /**
      * Adds a user to the group as a member.
      *
@@ -56,5 +60,9 @@ public class Group {
      */
     public void postToGroup(Post post) {
         groupPosts.add(post);
+    }
+
+    public void removeMember(UserProfile user2) {
+
     }
 }

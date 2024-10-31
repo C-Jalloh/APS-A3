@@ -1,33 +1,73 @@
-import java.util.Calendar;
-
 public class Main {
 
-
     public static void main(String[] args) {
-        Calendar today = Calendar.getInstance();
-        PremiumUser ebrima = new PremiumUser("C Jalloh", "esjallow03@gmail.com");
-        StandardUser tijan = new StandardUser("Tichu", "jallowt72@gmail.com");
-        StandardUser sellou = new StandardUser("K Brown", "selou@gmail.com");
-        Comment firstComment = new Comment("this is the first comment", tijan);
-        Comment secondComment = new Comment("this is the second comment", sellou);
-        Message message = new Message("This is a message from C Jalloh to sellou", ebrima, sellou);
+        // Initialize the SocialNetworkApp instance
+        SocialNetwork app = new SocialNetwork();
+
+        // Create StandardUser and PremiumUser
+        UserProfile user1 = new StandardUser("Ebrima", "cjalloh@example.com");
+        UserProfile user2 = new PremiumUser("Tijan", "tichu@example.com");
+        StandardUser user3 = new StandardUser("mama", "mams@gmail.com");
+
+        // Fatou creates a text and Video post
+        Post videoPost = new VideoPost("A day in my life:" ,user1,"https://www.youtube.com/watch?v=KWSLBtT5FUw");
+        Post textPost = new TextPost("I just started university!", user1);
+
+        // Fatou adds Bob as a friend
+        user1.addFriend(user2);
+        System.out.println();
+
+        // Fatou Creates and shares a video and a text Post
+        ((StandardUser) user1).createPost(textPost);
+        System.out.println();
+        ((StandardUser) user1).createPost(videoPost);
+        System.out.println();
+
+        // Bob adds Fatou as a friend
+        user2.addFriend(user1);
+        System.out.println();
+
+        // Bob comments and like Fatou's post
+        Comment comment = new Comment("Nice post, bestie!", user2);
+        textPost.addComment(comment);  // Adds Bob's comment to Fatou's post
+        textPost.likePost();      // Bob likes Fatou's post
+        System.out.println();
+
+        // Display of Fatou's TimeLine
+        ((StandardUser) user1).viewTimeline();
+        System.out.println();
+
+        // Fatou sends a private message to Bob
+        user1.sendMessage(new Message("Hey Tijan! How's it going?"));
+        System.out.println();
+
+        // Bob views his notifications
+        user2.viewNotifications();
+        System.out.println();
+
+        // Bob checks his inbox for any received messages
+        user2.viewInbox();
+        System.out.println();
+
+        // Create a Group
+        Group newGroup = new Group("Circle");
+        newGroup.SetAdmin((PremiumUser) user2);;
+        newGroup.addMember(user1);
+        newGroup.addMember(user2);
+        newGroup.addMember(user3);
+        System.out.println();
+
+
+        // Fatou Post to the Group
+        Post groupPost1 = new TextPost("Hello Everyone, How are we doing today...", user1);
+        newGroup.postToGroup(groupPost1);
+        System.out.println();
+
+        //Remove Bob from the Group
+        newGroup.removeMember(user2);
+        System.out.println();
 
 
 
-        Post post = new Post("this is a post");
-        tijan.createPost(post);
-        tijan.addFriend(ebrima);
-        tijan.addFriend(sellou);
-        tijan.getFriendByUsername("C Jalloh");
-        post.likePost();
-        message.display();
-        //tijan.sendMessage();
-        //tijan.viewTimeline();
-        //tijan.viewFriends();
-        //post.setAuthor("C Jalloh", "esjallow03@gmail.com");
-
-        //post.addComment(firstComment);
-        //post.addComment(secondComment);
-        //post.displayPost();
     }
 }

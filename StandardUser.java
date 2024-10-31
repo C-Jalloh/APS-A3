@@ -58,4 +58,12 @@ public class StandardUser extends UserProfile implements Postable {
     public void makeComment(Post post, Comment comment) {
         post.addComment(comment);
     }
+
+    public Post getPosts() {
+        for(Post post : posts){
+            return post;
+        }
+
+        return null;
+    }
 }

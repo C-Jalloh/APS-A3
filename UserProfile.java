@@ -88,4 +88,9 @@ public abstract class UserProfile {
         this.username = username;
     }
 
+    public void viewNotifications() {
+    }
+
+    public void viewInbox() {
+    }
 }
